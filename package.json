@@ -1,0 +1,31 @@
+{
+  "name": "micro-todo-auto-appear",
+  "displayName": "Micro todo auto appear",
+  "version": "0.0.1",
+  "description": "沙雕微软待办，夜间模式都搞出来了，根据系统外观来调整都不会搞一个，这个插件就是解决微软待办Todo能根据系统外观来自动切换主题色的！",
+  "author": "agxm <ntiwagxm@gmail.com>",
+  "scripts": {
+    "dev": "plasmo dev",
+    "build": "plasmo build",
+    "package": "plasmo package"
+  },
+  "dependencies": {
+    "plasmo": "0.89.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@types/chrome": "0.0.258",
+    "@types/node": "20.11.5",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "prettier": "3.2.4",
+    "typescript": "5.3.3"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ]
+  }
+}
