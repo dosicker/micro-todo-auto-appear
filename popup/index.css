@@ -1,0 +1,9 @@
+@unocss;
+
+body {
+  margin: 0;
+}
+
+.container {
+  min-width: 12rem;
+}
