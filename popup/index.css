@@ -5,5 +5,9 @@ body {
 }
 
 .container {
-  min-width: 12rem;
+  ul {
+    li {
+      white-space: nowrap;
+    }
+  }
 }
