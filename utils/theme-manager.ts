@@ -1,5 +1,5 @@
 import { Storage } from "@plasmohq/storage"
-import { getCurrentSystemAppear, getCurrentActiveTab } from "./index"
+import { getCurrentSystemAppear, getWebAppear } from "./index"
 
 const storage = new Storage();
 
@@ -30,8 +30,10 @@ function fetchConfigTheme(theme: string) {
       return;
     }
     return response.json();
-  }).then(data => {
+  }).then(async data => {
     console.log('Success:', data);
+    await storage.set("WebAppear", theme);
+
     // step 3：
     // 动态加载并执行脚本
     // const script = document.createElement('script');
@@ -43,29 +45,29 @@ function fetchConfigTheme(theme: string) {
 }
 
 // step 4：上报当前主题模式
-function fetchReportConfigTheme(theme: string) {
-  fetch('https://consumer.suite.office.com/api/settings/darkmode', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-    },
-    body: JSON.stringify({
-      Key: 'IsDarkmode',
-      Value: theme == 'dark'
-    }),
-    credentials: "include"
-  }).then(response => {
-    if (!response.ok) {
-      console.error('Network response was not ok');
-      return;
-    }
-    return response.json();
-  }).then(data => {
-    console.log('Success:', data);
-  }).catch(error => {
-    console.error('There has been a problem with your fetch operation:', error);
-  });
-}
+// function fetchReportConfigTheme(theme: string) {
+//   fetch('https://consumer.suite.office.com/api/settings/darkmode', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json; charset=UTF-8'
+//     },
+//     body: JSON.stringify({
+//       Key: 'IsDarkmode',
+//       Value: theme == 'dark'
+//     }),
+//     credentials: "include"
+//   }).then(response => {
+//     if (!response.ok) {
+//       console.error('Network response was not ok');
+//       return;
+//     }
+//     return response.json();
+//   }).then(data => {
+//     console.log('Success:', data);
+//   }).catch(error => {
+//     console.error('There has been a problem with your fetch operation:', error);
+//   });
+// }
 
 
 /**
@@ -75,11 +77,13 @@ export const syncThemeWithDevice = async () => {
   console.log("跟随系统外观啦~");
 
   const sysAppear = getCurrentSystemAppear();
-  const webAppear = await storage.get("WebAppear")
+  console.log("🚀 ~ file: theme-manager.ts:78 ~ syncThemeWithDevice ~ 系统外观:", sysAppear)
+  const webAppear = getWebAppear()
+  console.log("🚀 ~ file: theme-manager.ts:80 ~ syncThemeWithDevice ~ 页面外观:", webAppear)
   if (sysAppear != webAppear) {
     settingDomTheme(sysAppear);
-    await fetchConfigTheme(sysAppear);
-    storage.set("WebAppear", sysAppear)
+    fetchConfigTheme(sysAppear);
+    // storage.set("WebAppear", sysAppear)
     // await fetchReportConfigTheme(sysAppear);
   }
 }
@@ -88,9 +92,9 @@ export const syncThemeWithDevice = async () => {
 export const toggleAppear = async () => {
   console.log("手动切换外观啦~");
   // const appear = getCurrentSystemAppear() == 'default' ? 'dark' : 'default'
-  const appear = await storage.get("WebAppear")
+  const appear = (await storage.get("WebAppear")) == 'default' ? 'dark' : 'default'
   settingDomTheme(appear);
-  await fetchConfigTheme(appear);
+  fetchConfigTheme(appear);
 }
 
 // export const swichTheme = async () => {

@@ -1,31 +1,32 @@
 import { useState, useEffect } from "react"
-// import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
-import { getWebAppear, handleForwardTodo, getCurrentActiveTab, getActiveTabMatchFlag } from "~utils/index"
-// import { swichTheme } from "~utils/theme-manager";
+import { handleForwardTodo, getCurrentActiveTab, getActiveTabMatchFlag, useDebounce, getStorageAutoSystemAppear } from "~utils/index"
 import "./index.css"
 
 function IndexPopup() {
+  // 当前页是否在微软待办页中
   const [activeTabFlag, setActiveTabFlag] = useState(false)
-  // const [autoFollowSystemFlag, setAutoFollowSystemFlag] = useState(false)
-  const [autoFollowSystemFlag, setAutoFollowSystemFlag] = useStorage("AutoSystemAppearFlag", false)
-
-  const [webAppear, setWebAppear] = useStorage("WebAppear", getWebAppear())
-
-  // const storage = new Storage()
+  // 是否开启“跟随系统外观”
+  const [autoFollowSystemFlag, setAutoFollowSystemFlag] = useStorage("AutoSystemAppearFlag", true)
+  // 当前页面的外观模式
+  const [webAppear] = useStorage("WebAppear")
 
   useEffect(() => {
     const effectActiveTabFlag = async () => {
-      const flag = await getActiveTabMatchFlag() as boolean
+      const flag = await getActiveTabMatchFlag()
       setActiveTabFlag(flag)
     }
-
     effectActiveTabFlag()
-  }, [])
 
-  useEffect(() => {
-    console.log("🚀 ~ file: index.tsx:26 ~ useEffect ~ autoFollowSystemFlag:", autoFollowSystemFlag)
-  }, [autoFollowSystemFlag])
+    const effectAutoFollowSystemFlag = async () => {
+      const flag = await getStorageAutoSystemAppear()
+      console.log("🚀 ~ file: index.tsx:33 ~ effectAutoFollowSystemFlag ~ flag:", flag)
+      setAutoFollowSystemFlag(flag)
+    }
+    effectAutoFollowSystemFlag()
+
+    console.log('getWebAppear()', webAppear);
+  }, [activeTabFlag, autoFollowSystemFlag, webAppear])
 
   // 开启/关闭“跟随系统外观”切换主题
   const handleAutoFollowAppear = async e => {
@@ -33,6 +34,7 @@ function IndexPopup() {
     console.log("🚀 ~ file: index.tsx:27 ~ handleAutoFollowAppear ~ flag:", flag)
 
     setAutoFollowSystemFlag(flag)
+    // await storage.set('AutoSystemAppearFlag', flag)
     // PS: 这里存在一个问题就是如果使用了useStorage的hook去setStorage
     // 然后紧接着就想打印查看这个hook提供的值的话，是存在一个异步更新的问题，它会以上一次的值返回并显示出来
     // console.log(autoFollowSystemFlag);
@@ -46,27 +48,32 @@ function IndexPopup() {
 
     chrome.tabs.sendMessage(currentTab.id, { AppearMsg: flag }, e => {
       console.log("🚀 ~ file: index.tsx:48 ~ handleAutoFollowAppear ~ e:", e)
-      // setWebAppear(getWebAppear())
     })
   }
 
-  const handleSwitchAppear = async e => {
-    if (autoFollowSystemFlag) return
+  const handleSwitchAppear = useDebounce(async function () {
+    console.log("🚀 ~ file: index.tsx:58 ~ handleSwitchAppear ~ autoFollowSystemFlag:", await autoFollowSystemFlag)
+    const val = await getStorageAutoSystemAppear()
 
-    console.log("🚀 ~ file: index.tsx:57 ~ handleSwitchAppear ~ webAppear:", webAppear)
+    if (val) return
 
-    setWebAppear(webAppear == 'default' ? 'dark' : 'default')
+    console.log("🚀 ~ file: index.tsx:63 ~ handleSwitchAppear ~ webAppear:", webAppear)
+
+    // setWebAppear(webAppear == 'default' ? 'dark' : 'default')
 
     const currentTab = await getCurrentActiveTab()
     chrome.tabs.sendMessage(currentTab.id, { AppearMsg: 'toggle' }, e => {
-      console.log("🚀 ~ file: index.tsx:63 ~ handleSwitchAppear ~ e:", e)
+      console.log("🚀 ~ file: index.tsx:69 ~ handleSwitchAppear ~ e:", e)
     })
-  }
+  })
+
+  // const handleSwitchAppear = useDebounce(beSwitchAppear)
+  // const handleSwitchAppear = beSwitchAppear
 
   return (
     <div className="container min-w-36 bg-[rgba(223, 222, 222, .75)]">
       {/* <div> */}
-      <ul className="w-full list-none p-0 m-0 font-medium cursor-pointer">
+      <ul className="w-full list-none p-0 m-0 font-medium cursor-pointer select-none">
         {
           activeTabFlag ? (
             <>

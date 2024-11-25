@@ -1,8 +1,9 @@
 import type { PlasmoCSConfig } from "plasmo";
-import { Storage } from "@plasmohq/storage"
+// import { Storage } from "@plasmohq/storage"
 import { syncThemeWithDevice, toggleAppear } from "~utils/theme-manager";
+import { getStorageAutoSystemAppear } from "~utils/index";
 
-const storage = new Storage();
+// const storage = new Storage();
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
 export const config: PlasmoCSConfig = {
@@ -15,25 +16,34 @@ if (process.env.NODE_ENV === "development") {
 
 // 初始化并同步外观模式
 const initialize = async () => {
-  const autoAppear = await storage.get('AutoSystemAppearFlag')
-  console.log("🚀 ~ file: index.ts:19 ~ initialize ~ autoAppear:", autoAppear)
+  const autoAppear = await getStorageAutoSystemAppear()
+  console.log("🚀 ~ file: index.ts:20 ~ initialize ~ autoAppear:", autoAppear)
   if (autoAppear) {
     syncThemeWithDevice();
     mediaQuery.addEventListener('change', syncThemeWithDevice);
   }
-
-  chrome.runtime.onMessage.addListener((message: any, sender, sendResponse) => {
-    console.log(message);
-
-    const { AppearMsg } = message
-
-    sendResponse("接收到了你的值：" + message)
-
-    if (AppearMsg === 'toggle') toggleAppear()
-    else if (AppearMsg === true) initialize()
-    else mediaQuery.removeEventListener('change', syncThemeWithDevice)
-  })
 }
 
-// initialize()
-window.addEventListener('load', initialize)
+// const handleBrowserMessage = () => {
+chrome.runtime.onMessage.addListener((message: any, sender, sendResponse) => {
+  console.log(message);
+
+  const { AppearMsg } = message
+
+  sendResponse("接收到了你的值：" + message)
+
+  if (AppearMsg === 'toggle') toggleAppear()
+  else if (AppearMsg === true) initialize()
+  else mediaQuery.removeEventListener('change', syncThemeWithDevice)
+})
+// }
+
+// 脚本初始化加载生效
+// document.addEventListener('DOMContentLoaded', () => {
+//   initialize()
+//   handleBrowserMessage()
+// })
+window.addEventListener('load', () => {
+  initialize()
+  // handleBrowserMessage()
+})
