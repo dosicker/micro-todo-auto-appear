@@ -1,5 +1,13 @@
 This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
 
+这是一个[plasmo扩展]（https://docs.plasmo.com/），带有[`plasmo Init']（https://www.npmjs.com/package/plasmo）的bootstrable。
+
+**Micro todo auto appear**是一个基于[Plasmo](https://docs.plasmo.com/)而成的浏览器扩展（插件）。
+
+## 能做什么？
+
+https://raw.githubusercontent.com/dosicker/micro-todo-auto-appear/main/demo/video/What%20it%20can%20do.mp4
+
 ## Getting Started
 
 First, run the development server:
