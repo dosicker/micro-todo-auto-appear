@@ -6,7 +6,7 @@
 
 ## What can it do?
 
-<video controls="true" autoplay="false" name="media"><source src="./demo/video/What it can do.mp4" type="video/mp4"></video>
+<video controls="true" autoplay="false" name="media"><source src="./demo/video/What%20it%20can%20do.mp4" type="video/mp4"></video>
 
 <!-- https://github.com/user-attachments/assets/c3136d8a-9c68-47b6-96a9-616e2a92ccf1 -->
 
