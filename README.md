@@ -6,7 +6,7 @@ This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with
 
 ## 能做什么？
 
-https://raw.githubusercontent.com/dosicker/micro-todo-auto-appear/main/demo/video/What it can do.mp4
+https://raw.githubusercontent.com/dosicker/micro-todo-auto-appear/main/demo/video/What%20it%20can%20do.mp4
 
 ## Getting Started
 
