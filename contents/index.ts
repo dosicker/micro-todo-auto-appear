@@ -1,7 +1,7 @@
 import type { PlasmoCSConfig } from "plasmo";
 // import { Storage } from "@plasmohq/storage"
 import { syncThemeWithDevice, toggleAppear } from "~utils/theme-manager";
-import { getStorageAutoSystemAppear } from "~utils/index";
+import { getStorageAutoSystemAppear, getWebAppear } from "~utils/index";
 
 // const storage = new Storage();
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -10,12 +10,15 @@ export const config: PlasmoCSConfig = {
   matches: ["https://to-do.live.com/*"]
 }
 
-if (process.env.NODE_ENV === "development") {
-  console.log("This is a development build")
-}
+const obServer = new MutationObserver((e) => {
+  console.log(e);
+  initialize()
+})
 
 // 初始化并同步外观模式
 const initialize = async () => {
+  obServer.disconnect()
+
   const autoAppear = await getStorageAutoSystemAppear()
   console.log("🚀 ~ file: index.ts:20 ~ initialize ~ autoAppear:", autoAppear)
   if (autoAppear) {
@@ -24,7 +27,6 @@ const initialize = async () => {
   }
 }
 
-// const handleBrowserMessage = () => {
 chrome.runtime.onMessage.addListener((message: any, sender, sendResponse) => {
   console.log(message);
 
@@ -36,14 +38,21 @@ chrome.runtime.onMessage.addListener((message: any, sender, sendResponse) => {
   else if (AppearMsg === true) initialize()
   else mediaQuery.removeEventListener('change', syncThemeWithDevice)
 })
-// }
+
+const initAttrMutationObserver = () => {
+  const targetNode = document.documentElement
+  obServer.observe(targetNode, { attributes: true })
+}
 
 // 脚本初始化加载生效
 // document.addEventListener('DOMContentLoaded', () => {
 //   initialize()
 //   handleBrowserMessage()
 // })
+
 window.addEventListener('load', () => {
-  initialize()
-  // handleBrowserMessage()
+  // initialize()
+  initAttrMutationObserver()
 })
+
+// window.onload = initialize

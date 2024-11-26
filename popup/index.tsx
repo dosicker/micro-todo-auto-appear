@@ -85,6 +85,7 @@ function IndexPopup() {
                 </label>
                 跟随系统外观
               </li>
+              {/* TODO：页面设置非当前模式后，重新打开popup弹窗刷新当前外观状态 */}
               <li className={`w-full px-4 py-2 ${autoFollowSystemFlag ? 'text-gray-500 cursor-not-allowed' : 'hover:bg-sky-100'}`}
                 onClick={handleSwitchAppear}>切换{webAppear == 'dark' ? '日' : '夜'}间模式</li>
             </>
