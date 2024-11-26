@@ -6,11 +6,7 @@
 
 ## 能做什么？
 
-<video controls="true" autoplay="false" name="media"><source src="./demo/video/What%20it%20can%20do.mp4" type="video/mp4"></video>
-
-<!-- https://github.com/user-attachments/assets/c3136d8a-9c68-47b6-96a9-616e2a92ccf1 -->
-
-<!-- https://raw.githubusercontent.com/dosicker/micro-todo-auto-appear/main/demo/video/What%20it%20can%20do.mp4 -->
+https://github.com/user-attachments/assets/c3136d8a-9c68-47b6-96a9-616e2a92ccf1
 
 在使用[Microsoft To Do](https://to-do.live.com)时，它能支持日/夜间模式的自动切换（因为**沙雕微软只做到支持切换，并未支持跟随系统外观模式来切换**）。
 
