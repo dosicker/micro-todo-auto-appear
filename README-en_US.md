@@ -6,11 +6,7 @@
 
 ## What can it do?
 
-<video controls="true" autoplay="false" name="media"><source src="demo/video/What it can do.mp4" type="video/mp4"></video>
-
-<!-- https://github.com/user-attachments/assets/c3136d8a-9c68-47b6-96a9-616e2a92ccf1 -->
-
-<!-- https://raw.githubusercontent.com/dosicker/micro-todo-auto-appear/main/demo/video/What%20it%20can%20do.mp4 -->
+https://github.com/user-attachments/assets/c3136d8a-9c68-47b6-96a9-616e2a92ccf1
 
 When using [Microsoft To Do](https://to-do.live.com), it can support automatic switching of day/night mode (because **Microsoft only supports switching, but does not support switching according to the system appearance mode**).
 
