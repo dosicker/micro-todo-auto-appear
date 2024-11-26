@@ -34,8 +34,10 @@ https://github.com/user-attachments/assets/c3136d8a-9c68-47b6-96a9-616e2a92ccf1
 
 根据上述文字仍存有疑问或操作不明白，可以跟着上面的视频结合文字一起来，还不行？看看这个文章（其他浏览器未兼容到的未进行测试，如果有兴趣，也可以看看）：[油小猴工具箱 · 如何安装浏览器扩展？](https://www.youxiaohou.com/zh-cn/crx.html)
 
-> [!CAUTION]
+> [!WARNING]
 > 请注意对应你自己的浏览器版本！
+
+<br />
 
 **在使用过程中如果遇到问题，可以前往 [issues](https://github.com/dosicker/micro-todo-auto-appear/issues) 提出你的问题情况，按照以下规范：**
 

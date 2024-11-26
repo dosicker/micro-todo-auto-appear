@@ -34,8 +34,10 @@ When using [Microsoft To Do](https://to-do.live.com), it can support automatic s
 
 If you still have questions or don't understand the operation based on the above text, you can follow the video above in combination with the text. Still not enough? Check out this article (other browsers that are not compatible have not been tested, if you are interested, you can also take a look): [Oil Monkey Toolbox · How to install browser extensions? ](https://www.youxiaohou.com/zh-cn/crx.html)
 
-> [!CAUTION]
+> [!WARNING]
 > Please pay attention to your own browser version!
+
+<br />
 
 **If you encounter problems during use, you can go to [issues](https://github.com/dosicker/micro-todo-auto-appear/issues) to raise your problem, according to the following specifications:**
 
