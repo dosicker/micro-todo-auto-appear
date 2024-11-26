@@ -1,7 +1,7 @@
 {
   "name": "micro-todo-auto-appear",
   "displayName": "Micro todo auto appear",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "能让沙雕微软待办（Web Todo）根据系统外观来自动切换主题色。",
   "author": "agxm <ntiwagxm@gmail.com>",
   "scripts": {
