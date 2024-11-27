@@ -42,13 +42,17 @@ https://github.com/user-attachments/assets/c3136d8a-9c68-47b6-96a9-616e2a92ccf1
 **在使用过程中如果遇到问题，可以前往 [issues](https://github.com/dosicker/micro-todo-auto-appear/issues) 提出你的问题情况，按照以下规范：**
 
 > 例：<br />
-> 你的系统设备是？
+>
+> 你的系统设备是？<br />
 > Windows 10 22H2<br />
-> 你的浏览器是？
+>
+> 你的浏览器是？<br />
 > Google Chrome<br />
-> 浏览器版本号是？
+>
+> 浏览器版本号是？<br />
 > 119.0.6045.200<br />
-> 你的问题是？
+>
+> 你的问题是？<br />
 > 安装扩展后，且开启了跟随系统外观，但是页面不会自动切换日/夜间模式。（尽量详细每一个步骤）
 
 ## 开发指南
