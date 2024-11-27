@@ -57,7 +57,7 @@ https://github.com/user-attachments/assets/c3136d8a-9c68-47b6-96a9-616e2a92ccf1
 
 其外只需要根据文档食用即可：
 
-- Chrome Manifest API
+- Chrome API
 - Chrome Manifest V3/V2
 - Chrome Manifest Permissions
 - Plasmo：
@@ -85,6 +85,7 @@ micro-todo-auto-appear
 ```
 
 ### 一起来完善
+
 ```bash
 # 1、依赖
 pnpm install
@@ -107,7 +108,6 @@ pnpm build --zip
 # 其他版本构建详细可看：https://docs.plasmo.com/framework/workflows/build
 ```
 
-
 ## 支持项目
 
 它能给你带来便利的话，考虑请开发者喝杯咖啡吗？
@@ -117,7 +117,6 @@ pnpm build --zip
   <img src="./demo/assets/donation/alipay_donate.jpg" alt="支付宝打赏" width="350" />
 </p>
 
-谢谢！！！
 
 ## 其他
 

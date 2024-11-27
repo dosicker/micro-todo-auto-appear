@@ -57,7 +57,7 @@ This project is based on [Plasmo](https://docs.plasmo.com/). Please make sure th
 
 Other than that, you only need to follow the documentation:
 
-- Chrome Manifest API
+- Chrome API
 - Chrome Manifest V3/V2
 - Chrome Manifest Permissions
 - Plasmo:
@@ -85,6 +85,7 @@ micro-todo-auto-appear
 ```
 
 ### Let's improve together
+
 ```bash
 # 1. Dependencies
 pnpm install
@@ -107,7 +108,8 @@ pnpm build --zip
 # For details on other versions of the build, see: https://docs.plasmo.com/framework/workflows/build
 ```
 
-## Support projects
+
+## Sponsor me
 
 If it brings you convenience, would you consider buying the developer a cup of coffee?
 
@@ -116,7 +118,6 @@ If it brings you convenience, would you consider buying the developer a cup of c
 <img src="./demo/assets/donation/alipay_donate.jpg" alt="Alipay Reward" width="350" />
 </p>
 
-Thank you! ! !
 
 ## Others
 
