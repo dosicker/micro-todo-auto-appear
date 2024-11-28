@@ -34,40 +34,42 @@ function fetchConfigTheme(theme: string) {
     console.log('Success:', data);
     await storage.set("WebAppear", theme);
 
-    // step 3：
-    // 动态加载并执行脚本
-    // const script = document.createElement('script');
-    // script.src = 'https://res-1.cdn.office.net/shellux/suiteux.shell.themeplus.f43620619108ace403e1.js';
-    // document.body.appendChild(script);
+    // step 3：动态加载并执行脚本
+    const script = document.createElement('script');
+    script.src = 'https://res-1.cdn.office.net/shellux/suiteux.shell.themeplus.f43620619108ace403e1.js';
+    document.body.appendChild(script);
+
+    // step 4：手动mock官方更改外观主题，执行回调接口？
+    fetchReportConfigTheme(theme);
   }).catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
   });
 }
 
 // step 4：上报当前主题模式
-// function fetchReportConfigTheme(theme: string) {
-//   fetch('https://consumer.suite.office.com/api/settings/darkmode', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json; charset=UTF-8'
-//     },
-//     body: JSON.stringify({
-//       Key: 'IsDarkmode',
-//       Value: theme == 'dark'
-//     }),
-//     credentials: "include"
-//   }).then(response => {
-//     if (!response.ok) {
-//       console.error('Network response was not ok');
-//       return;
-//     }
-//     return response.json();
-//   }).then(data => {
-//     console.log('Success:', data);
-//   }).catch(error => {
-//     console.error('There has been a problem with your fetch operation:', error);
-//   });
-// }
+function fetchReportConfigTheme(theme: string) {
+  fetch('https://consumer.suite.office.com/api/settings/darkmode', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify({
+      Key: 'IsDarkmode',
+      Value: theme == 'dark'
+    }),
+    credentials: "include"
+  }).then(response => {
+    if (!response.ok) {
+      console.error('Network response was not ok');
+      return;
+    }
+    return response.json();
+  }).then(data => {
+    console.log('Success:', data);
+  }).catch(error => {
+    console.error('There has been a problem with your fetch operation:', error);
+  });
+}
 
 
 /**
@@ -84,7 +86,6 @@ export const syncThemeWithDevice = async () => {
     settingDomTheme(sysAppear);
     fetchConfigTheme(sysAppear);
     // storage.set("WebAppear", sysAppear)
-    // await fetchReportConfigTheme(sysAppear);
   }
 }
 

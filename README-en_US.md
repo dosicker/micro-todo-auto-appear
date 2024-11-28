@@ -42,13 +42,17 @@ If you still have questions or don't understand the operation based on the above
 **If you encounter problems during use, you can go to [issues](https://github.com/dosicker/micro-todo-auto-appear/issues) to raise your problem, according to the following specifications:**
 
 > Example:<br />
-> What is your system device?
+>
+> What is your system device?<br />
 > Windows 10 22H2<br />
-> What is your browser?
+>
+> What is your browser?<br />
 > Google Chrome<br />
-> What is the browser version number?
+>
+> What is the browser version number?<br />
 > 119.0.6045.200<br />
-> What is your problem?
+>
+> What is your problem?<br />
 > After installing the extension and turning on the system appearance, the page will not automatically switch to day/night mode. (Try to be as detailed as possible for each step)
 
 ## Development Guide
